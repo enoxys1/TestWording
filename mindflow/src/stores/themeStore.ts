@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { storage } from '../services/storage';
 
 export type ThemeId = 'dark' | 'neon' | 'nature' | 'retro' | 'minimal' | 'ocean' | 'sunset' | 'monochrome';
 
@@ -206,7 +206,7 @@ export const useThemeStore = create<ThemeState>()(
     }),
     {
       name: 'mindflow-theme-storage',
-      storage: createJSONStorage(() => AsyncStorage),
+      storage: createJSONStorage(() => storage),
     }
   )
 );

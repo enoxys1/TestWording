@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { storage } from '../services/storage';
 
 export type GameType = 'motus' | 'sudoku' | 'numbermatch' | 'anagram' | '2048';
 
@@ -165,7 +165,7 @@ export const useGameStore = create<GameState>()(
     }),
     {
       name: 'mindflow-game-storage',
-      storage: createJSONStorage(() => AsyncStorage),
+      storage: createJSONStorage(() => storage),
     }
   )
 );

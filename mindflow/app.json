@@ -4,12 +4,12 @@
     "slug": "mindflow",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/icon.png",
     "scheme": "mindflow",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#1E1B4B"
     },
@@ -20,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1E1B4B"
       },
       "package": "com.mindflow.app",
@@ -30,13 +30,19 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "name": "MindFlow",
+      "shortName": "MindFlow",
+      "description": "Jeux cérébraux gratuits sans pub",
+      "backgroundColor": "#1E1B4B",
+      "themeColor": "#6366F1"
     },
     "plugins": [
       "expo-router"
     ],
     "experiments": {
-      "typedRoutes": true
+      "typedRoutes": true,
+      "baseUrl": "/TestWording"
     }
   }
 }

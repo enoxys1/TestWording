@@ -1,12 +1,14 @@
-# 🎯 MINDFLOW - L'Application de Jeux Cérébraux Sans Friction
+# MINDFLOW - L'Application de Jeux Cérébraux Sans Friction
 
 ## Vision Executive
 
 **Problème identifié** : Les applications de jeux de mots et de chiffres (Sudoku, mots fléchés, Cemantix, Number Match) sont devenues quasi-injouables à cause de la publicité omniprésente et agressive.
 
-**Notre solution** : Une plateforme unifiée de jeux cérébraux premium, pensée pour le plaisir du joueur, avec un modèle économique respectueux.
+**Notre solution** : Une plateforme unifiée de jeux cérébraux 100% gratuite au gameplay complet, financée par des achats cosmétiques optionnels et des donations volontaires.
 
-**Positionnement** : "Netflix des jeux cérébraux" - Un abonnement, tous les jeux, zéro pub.
+**Positionnement** : "Tous les jeux cérébraux, gratuits, sans pub, pour toujours."
+
+**Philosophie technique** : Coût de maintenance 0€/mois, quelle que soit la taille de la base utilisateurs.
 
 ---
 
@@ -16,12 +18,13 @@
 
 | Problème | Impact Utilisateur | Notre Solution |
 |----------|-------------------|----------------|
-| Pub vidéo après chaque niveau | Frustration, abandon | Zéro pub intrusive |
+| Pub vidéo après chaque niveau | Frustration, abandon | Zéro pub, jamais |
 | Pubs interstitielles | Interruption du flow | Expérience fluide |
-| Achat de vies/indices | Pay-to-win | Tout inclus |
+| Achat de vies/indices | Pay-to-win | Gameplay 100% gratuit |
 | Apps fragmentées | 10 apps différentes | Tout-en-un |
 | Design daté/cheap | Expérience médiocre | UI/UX premium |
-| Données vendues | Vie privée compromise | Privacy-first |
+| Données vendues | Vie privée compromise | Privacy-first, tout en local |
+| Abonnements multiples | Fatigue de l'abonnement | Pas d'abonnement |
 
 ### 1.2 Mapping Concurrentiel
 
@@ -30,7 +33,7 @@
                        ↑
                        |
     Peak (puzzles)     |     ★ MINDFLOW
-    NYT Games          |     (notre position cible)
+    NYT Games (abo)    |     (gratuit + dons)
                        |
     ←------------------+------------------→
     FRAGMENTÉ          |           UNIFIÉ
@@ -50,12 +53,12 @@
 
 | Jeu | Description | Inspiration | Innovation |
 |-----|-------------|-------------|------------|
-| **MOTUS** | Deviner le mot en 6 essais | Wordle/Sutom | Mode multijoueur temps réel |
+| **MOTUS** | Deviner le mot en 6 essais | Wordle/Sutom | Classements GameCenter |
 | **SÉMANTIQUE** | Trouver le mot par proximité sémantique | Cemantix | Thèmes quotidiens + historique |
-| **FLÉCHÉS** | Mots croisés fléchés | Mots fléchés classiques | Génération infinie par IA |
-| **ANAGRAMMES** | Former des mots avec des lettres | Scrabble GO | Mode rush + tournois |
+| **FLÉCHÉS** | Mots croisés fléchés | Mots fléchés classiques | Génération infinie locale |
+| **ANAGRAMMES** | Former des mots avec des lettres | Scrabble GO | Mode rush chronométré |
 | **PENDU PRO** | Le pendu réinventé | Classique | Catégories thématiques |
-| **CHAÎNE DE MOTS** | Relier des mots par leur sens | Contexto | Mode coopératif |
+| **CHAÎNE DE MOTS** | Relier des mots par leur sens | Contexto | Achievements dédiés |
 
 ### 2.2 Jeux de Chiffres (Number Games)
 
@@ -64,7 +67,7 @@
 | **SUDOKU** | Classique 9x9, 6x6, 16x16 | Sudoku.com | Variantes (Killer, Sandwich, Thermo) |
 | **NUMBER MATCH** | Éliminer les paires | Number Match | Mode zen infini |
 | **CALCUL MENTAL** | Résoudre des opérations | Brain training | Progression adaptative |
-| **2048 FLOW** | Fusionner les tuiles | 2048 | Mode multijoueur |
+| **2048 FLOW** | Fusionner les tuiles | 2048 | Classements globaux |
 | **NONOGRAM** | Picross/griddlers | Picross | Créateur de niveaux |
 | **KAKURO** | Mots croisés numériques | Kakuro | Tutoriel interactif |
 
@@ -78,317 +81,525 @@
 
 ---
 
-## 3. FONCTIONNALITÉS DIFFÉRENCIANTES
+## 3. FONCTIONNALITÉS
 
 ### 3.1 Le "Daily Hub" - Page d'Accueil Quotidienne
 
 ```
 ┌─────────────────────────────────────────┐
-│  🌅 Bonjour Marie ! Jour 47 de streak   │
+│  Bonjour ! Jour 47 de streak            │
 ├─────────────────────────────────────────┤
-│  📅 DÉFIS DU JOUR                       │
+│  DÉFIS DU JOUR                          │
 │  ┌─────────┐ ┌─────────┐ ┌─────────┐   │
 │  │ MOTUS   │ │ SUDOKU  │ │SÉMANTIQUE│   │
-│  │  ⭐⭐⭐  │ │  ⭐⭐    │ │   ⭐⭐⭐⭐ │   │
+│  │  ***    │ │  **     │ │   ****   │   │
 │  │ 2:34    │ │ 5:12    │ │  12 coups│   │
 │  └─────────┘ └─────────┘ └─────────┘   │
 │                                         │
-│  🏆 CLASSEMENT AMIS                     │
+│  CLASSEMENT AMIS (via GameCenter)       │
 │  1. Paul - 3/3 défis                    │
 │  2. Vous - 2/3 défis                    │
 │  3. Sophie - 1/3 défis                  │
 │                                         │
-│  🎯 OBJECTIF SEMAINE: 15/21 défis       │
+│  OBJECTIF SEMAINE: 15/21 défis          │
 │  ████████████░░░░░░ 71%                 │
 └─────────────────────────────────────────┘
 ```
 
-### 3.2 Système de Progression Unifié
-
-**XP & Niveaux**
-- Chaque jeu rapporte de l'XP
-- Niveau global du joueur
-- Déblocage de thèmes visuels
+### 3.2 Système de Progression (100% local + GameCenter)
 
 **Streaks & Habitudes**
 - Streak quotidien (tous jeux confondus)
-- Badges de régularité
-- Rappels intelligents (non intrusifs)
+- Stocké localement + synchronisé via iCloud/Google Drive
+- Rappels intelligents (opt-in)
 
-**Maîtrise par Jeu**
-- Classement Bronze → Argent → Or → Platine → Diamant
-- Statistiques détaillées par jeu
-- Courbe de progression
+**Achievements (via GameCenter / Play Games)**
+- Achievements par jeu
+- Achievements globaux
+- Progression visible sur le profil
 
-### 3.3 Mode Social Innovant
+**Classements**
+- Classements mondiaux via GameCenter/Play Games
+- Classements amis automatiques
+- Classements par jeu et global
 
-| Fonctionnalité | Description |
-|----------------|-------------|
-| **Défis entre amis** | Envoyer un défi personnalisé |
-| **Leagues hebdomadaires** | Compétition par niveau |
-| **Clubs** | Groupes de joueurs avec chat |
-| **Partage élégant** | Stories visuelles des scores |
-| **Spectateur** | Regarder un ami jouer en live |
+### 3.3 Mode Offline Complet
 
-### 3.4 Mode Offline Complet
-
-- Tous les jeux jouables hors connexion
-- Synchronisation automatique au retour
-- Packs de niveaux téléchargeables
+- Tous les jeux jouables hors connexion (c'est le mode par défaut)
+- Génération des grilles côté client
+- Aucune dépendance serveur
 
 ---
 
-## 4. MODÈLE ÉCONOMIQUE
+## 4. MODÈLE ÉCONOMIQUE (SANS ABONNEMENT)
 
-### 4.1 Freemium Respectueux (Pas de Pubs)
+### 4.1 Philosophie : Gameplay 100% Gratuit
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                    GRATUIT                          │
-├─────────────────────────────────────────────────────┤
-│ ✓ 3 jeux complets (Motus, Sudoku, Number Match)    │
-│ ✓ Défis quotidiens limités (1 par jeu)             │
-│ ✓ Statistiques basiques                            │
-│ ✓ Mode offline                                      │
-│ ✗ Pas de pubs, jamais                              │
-└─────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────┐
-│              MINDFLOW PREMIUM                       │
-│              4.99€/mois ou 29.99€/an               │
-├─────────────────────────────────────────────────────┤
-│ ✓ TOUS les jeux (15+)                              │
-│ ✓ Défis quotidiens illimités                       │
-│ ✓ Toutes les variantes de jeux                     │
-│ ✓ Statistiques avancées                            │
-│ ✓ Thèmes et personnalisation                       │
-│ ✓ Mode social complet (clubs, leagues)             │
-│ ✓ Accès anticipé aux nouveaux jeux                 │
-│ ✓ Support prioritaire                              │
-└─────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────┐
-│              MINDFLOW FAMILLE                       │
-│              7.99€/mois (jusqu'à 6 comptes)        │
-├─────────────────────────────────────────────────────┤
-│ ✓ Tout Premium pour toute la famille               │
-│ ✓ Défis famille                                    │
-│ ✓ Classements familiaux                            │
-└─────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                 GAMEPLAY GRATUIT                        │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  ✓ TOUS les jeux (15+) — complets, sans limite         │
+│  ✓ Tous les modes de jeu                               │
+│  ✓ Défis quotidiens illimités                          │
+│  ✓ Classements mondiaux (GameCenter/Play Games)        │
+│  ✓ Achievements                                         │
+│  ✓ Statistiques                                         │
+│  ✓ Mode offline                                         │
+│  ✓ Zéro publicité                                       │
+│                                                         │
+│  Le jeu complet, gratuit, pour toujours.               │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
 ```
 
-### 4.2 Revenus Additionnels (Optionnels, Non Essentiels)
+### 4.2 Boutique Cosmétique (Achats Optionnels)
 
-| Source | Description | % Revenu Estimé |
-|--------|-------------|-----------------|
-| Abonnements | Coeur du modèle | 85% |
-| Thèmes cosmétiques | Achat unique (1-3€) | 10% |
-| Packs de niveaux spéciaux | Collaborations (ex: Le Monde) | 5% |
+```
+┌─────────────────────────────────────────────────────────┐
+│                     BOUTIQUE                            │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  THÈMES VISUELS                                        │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐      │
+│  │  DARK   │ │  NÉON   │ │ NATURE  │ │  RÉTRO  │      │
+│  │  0.99€  │ │  0.99€  │ │  0.99€  │ │  0.99€  │      │
+│  └─────────┘ └─────────┘ └─────────┘ └─────────┘      │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐      │
+│  │ MINIMAL │ │  OCEAN  │ │ SUNSET  │ │ MONOCHROME│    │
+│  │  0.99€  │ │  0.99€  │ │  0.99€  │ │  0.99€  │      │
+│  └─────────┘ └─────────┘ └─────────┘ └─────────┘      │
+│                                                         │
+│  PACK TOUS THÈMES ————————————————————— 4.99€          │
+│  (Économisez 60% + futurs thèmes inclus)               │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  PACKS SONS                                            │
+│  • Ambiance Zen (nature, pluie, forêt) ——— 1.99€       │
+│  • Clics Satisfaisants (ASMR) ———————————— 1.99€       │
+│  • Rétro 8-bit ——————————————————————————— 1.99€       │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  OUTILS                                                │
+│  • Stats Avancées (graphiques, tendances) — 1.99€      │
+│  • Export PDF (grilles imprimables) ———————— 1.99€     │
+│  • Pack Polices Premium ————————————————————— 0.99€    │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  PACK ULTIME (tout inclus) —————————————— 9.99€        │
+│  Tous les thèmes + sons + outils                       │
+│  + Tous les futurs contenus cosmétiques                │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
 
-### 4.3 Projection Financière (Hypothèses Conservatrices)
+### 4.3 Encart Donation (Soutien Volontaire)
 
-**Année 1** (lancement web + PWA)
-- Objectif: 50,000 utilisateurs actifs
-- Conversion premium: 5% = 2,500 abonnés
-- Revenu: ~75,000€/an
+```
+┌─────────────────────────────────────────────────────────┐
+│                                                         │
+│  SOUTENIR MINDFLOW                                     │
+│                                                         │
+│  "MINDFLOW est développé avec passion et reste         │
+│   gratuit sans pub. Si vous appréciez le projet,       │
+│   vous pouvez nous aider à continuer."                 │
+│                                                         │
+│  ┌─────────┬─────────┬─────────┬─────────────┐        │
+│  │   1€    │   3€    │   5€    │   Libre     │        │
+│  │   ☕    │   🍕    │   🎁    │   [____]€   │        │
+│  └─────────┴─────────┴─────────┴─────────────┘        │
+│                                                         │
+│  En remerciement :                                     │
+│  • Badge "Supporter" sur votre profil                  │
+│  • Nom dans les crédits (optionnel)                    │
+│  • Notre gratitude éternelle                           │
+│                                                         │
+│  [  Peut-être plus tard  ]                             │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
 
-**Année 2** (app native + croissance)
-- Objectif: 200,000 utilisateurs actifs
-- Conversion premium: 8% = 16,000 abonnés
-- Revenu: ~480,000€/an
+Règles d'affichage :
+- Apparaît après 7 jours d'utilisation active
+- Maximum 1 fois par mois si refusé
+- Jamais pendant une partie
+- Bouton "Ne plus afficher" respecté définitivement
+```
 
-**Année 3** (expansion internationale)
-- Objectif: 1,000,000 utilisateurs actifs
-- Conversion premium: 10% = 100,000 abonnés
-- Revenu: ~3,000,000€/an
+### 4.4 Projection Financière
+
+Avec 100,000 utilisateurs actifs :
+
+| Source | Taux conversion | Montant moyen | Revenu estimé |
+|--------|-----------------|---------------|---------------|
+| Achats cosmétiques | 3-5% | 3€ | 9,000-15,000€ |
+| Donations | 1-2% | 2.50€ | 2,500-5,000€ |
+| **Total** | | | **11,500-20,000€** |
+
+Note : Les coûts de maintenance étant de 0€/mois, tout revenu est bénéfice net (moins les frais de transaction ~15-30% sur stores).
 
 ---
 
-## 5. ARCHITECTURE TECHNIQUE
+## 5. ARCHITECTURE TECHNIQUE (COÛT ZÉRO)
 
-### 5.1 Stack Technologique Recommandé
-
-```
-┌─────────────────────────────────────────────────────┐
-│                    FRONTEND                         │
-├─────────────────────────────────────────────────────┤
-│  Framework: Next.js 14+ (App Router)               │
-│  UI: React + Tailwind CSS + Framer Motion          │
-│  State: Zustand (léger, performant)                │
-│  PWA: Service Workers + Workbox                    │
-│  Mobile: Capacitor (web → native)                  │
-└─────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────┐
-│                    BACKEND                          │
-├─────────────────────────────────────────────────────┤
-│  API: Node.js + tRPC ou Hono                       │
-│  Database: PostgreSQL (Supabase)                   │
-│  Auth: Supabase Auth / Clerk                       │
-│  Realtime: Supabase Realtime / Socket.io          │
-│  Cache: Redis (classements, sessions)              │
-└─────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────┐
-│                 INFRASTRUCTURE                      │
-├─────────────────────────────────────────────────────┤
-│  Hosting: Vercel (frontend) + Railway (backend)    │
-│  CDN: Cloudflare                                   │
-│  Analytics: Plausible (privacy-friendly)           │
-│  Payments: Stripe                                  │
-└─────────────────────────────────────────────────────┘
-```
-
-### 5.2 Architecture des Jeux
-
-```typescript
-// Structure modulaire par jeu
-/src
-  /games
-    /core              // Engine partagé
-      /GameEngine.ts   // Logique commune
-      /Timer.ts        // Gestion du temps
-      /Scoring.ts      // Système de score
-    /motus
-      /logic.ts        // Règles du jeu
-      /ui/             // Composants React
-      /store.ts        // État local
-    /sudoku
-      /generator.ts    // Génération de grilles
-      /solver.ts       // Vérification
-      /variants/       // Killer, Sandwich, etc.
-    /semantique
-      /embeddings.ts   // Vecteurs sémantiques
-      /dictionary.ts   // Mots français
-```
-
-### 5.3 Gestion Offline-First
+### 5.1 Principe Fondamental
 
 ```
-┌─────────────────────────────────────────────────────┐
-│              STRATÉGIE OFFLINE                      │
-├─────────────────────────────────────────────────────┤
-│  1. Service Worker cache tous les assets           │
-│  2. IndexedDB stocke:                              │
-│     - Progression du joueur                        │
-│     - Grilles générées localement                  │
-│     - Défis quotidiens (pré-téléchargés)          │
-│  3. Synchronisation optimiste au retour réseau    │
-│  4. Résolution de conflits côté serveur           │
-└─────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│           ARCHITECTURE 100% CLIENT-SIDE                 │
+│              = 0€/MOIS DE MAINTENANCE                   │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  • Aucun serveur backend                               │
+│  • Aucune base de données serveur                      │
+│  • Tout le code s'exécute dans l'app/navigateur        │
+│  • Hébergement statique uniquement                     │
+│                                                         │
+│  1 utilisateur = même coût que 10 millions             │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+### 5.2 Stack Technologique : React Native + Expo
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                 STACK CROSS-PLATFORM                    │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  Framework: React Native + Expo SDK 52+                │
+│  ├── iOS : Build natif via Expo                        │
+│  ├── Android : Build natif via Expo                    │
+│  └── Web : Expo Web (React Native Web)                 │
+│                                                         │
+│  Langage: TypeScript                                   │
+│                                                         │
+│  UI/Styling:                                           │
+│  ├── NativeWind (Tailwind pour React Native)          │
+│  ├── React Native Reanimated (animations)              │
+│  └── Expo Vector Icons                                 │
+│                                                         │
+│  State Management:                                      │
+│  ├── Zustand (état global léger)                       │
+│  └── MMKV (stockage local ultra-rapide)               │
+│                                                         │
+│  Navigation: Expo Router (file-based routing)          │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+### 5.3 Services Gratuits des Plateformes
+
+```
+┌─────────────────────────────────────────────────────────┐
+│              SERVICES NATIFS (GRATUITS)                 │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  iOS (GameCenter)                 Android (Play Games)  │
+│  ─────────────────                ────────────────────  │
+│  • Classements        0€          • Classements    0€   │
+│  • Achievements       0€          • Achievements   0€   │
+│  • Profil joueur      0€          • Profil joueur  0€   │
+│  • Sauvegarde iCloud  0€          • Sauvegarde     0€   │
+│  • Anti-triche        0€          • Anti-triche    0€   │
+│                                                         │
+│  Librairies Expo:                                      │
+│  • expo-game-center (iOS)                              │
+│  • react-native-play-games-services (Android)          │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+### 5.4 Stockage & Persistence
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                 STOCKAGE LOCAL                          │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  MMKV (Mobile) / AsyncStorage fallback                 │
+│  ├── Progression du joueur                             │
+│  ├── Statistiques                                       │
+│  ├── Préférences (thème, sons, etc.)                   │
+│  ├── Achats effectués                                  │
+│  └── Streak et historique                              │
+│                                                         │
+│  Sauvegarde Cloud (automatique, gratuit)               │
+│  ├── iOS : iCloud Key-Value Store                      │
+│  ├── Android : Google Drive App Data                   │
+│  └── Web : localStorage (pas de sync cross-device)     │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+### 5.5 Hébergement & Distribution
+
+| Plateforme | Solution | Coût |
+|------------|----------|------|
+| **iOS** | App Store | 99€/an (compte dev) |
+| **Android** | Google Play | 25€ one-time |
+| **Web** | Cloudflare Pages | 0€ |
+
+**Coût total fixe** : ~100€/an (comptes développeur)
+**Coût variable** : 0€ (pas de serveur)
+
+### 5.6 Paiements In-App
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                   PAIEMENTS                             │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  iOS      → StoreKit 2 (In-App Purchase)               │
+│             Commission Apple : 15-30%                   │
+│                                                         │
+│  Android  → Google Play Billing                        │
+│             Commission Google : 15-30%                  │
+│                                                         │
+│  Web      → Stripe / Paddle                            │
+│             Commission : ~3-5%                          │
+│             (ou lien vers stores pour éviter)          │
+│                                                         │
+│  Note: Pas de coût fixe, uniquement % sur ventes       │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+### 5.7 Structure du Projet
+
+```
+mindflow/
+├── app/                          # Expo Router (screens)
+│   ├── (tabs)/                   # Navigation principale
+│   │   ├── index.tsx             # Daily Hub
+│   │   ├── games.tsx             # Liste des jeux
+│   │   ├── stats.tsx             # Statistiques
+│   │   └── shop.tsx              # Boutique
+│   ├── games/                    # Écrans de jeux
+│   │   ├── motus.tsx
+│   │   ├── sudoku.tsx
+│   │   └── ...
+│   └── _layout.tsx
+│
+├── src/
+│   ├── games/                    # Logique des jeux
+│   │   ├── core/                 # Engine partagé
+│   │   │   ├── GameEngine.ts
+│   │   │   ├── Timer.ts
+│   │   │   └── Scoring.ts
+│   │   ├── motus/
+│   │   │   ├── logic.ts
+│   │   │   ├── dictionary.ts     # Mots français (JSON)
+│   │   │   └── components/
+│   │   ├── sudoku/
+│   │   │   ├── generator.ts      # Génération côté client
+│   │   │   ├── solver.ts
+│   │   │   └── variants/
+│   │   └── ...
+│   │
+│   ├── components/               # Composants réutilisables
+│   │   ├── ui/                   # Design system
+│   │   ├── game/                 # Composants de jeu
+│   │   └── shop/                 # Composants boutique
+│   │
+│   ├── stores/                   # État global (Zustand)
+│   │   ├── userStore.ts
+│   │   ├── gameStore.ts
+│   │   └── purchaseStore.ts
+│   │
+│   ├── services/
+│   │   ├── gameCenter.ts         # Intégration GameCenter
+│   │   ├── playGames.ts          # Intégration Play Games
+│   │   ├── purchases.ts          # In-App Purchases
+│   │   └── storage.ts            # MMKV wrapper
+│   │
+│   ├── themes/                   # Thèmes visuels
+│   │   ├── default.ts
+│   │   ├── dark.ts
+│   │   ├── neon.ts
+│   │   └── ...
+│   │
+│   └── constants/
+│       ├── achievements.ts       # Liste des achievements
+│       ├── leaderboards.ts       # IDs des classements
+│       └── products.ts           # IDs des achats in-app
+│
+├── assets/                       # Voir ASSETS.md
+│   ├── images/
+│   ├── sounds/
+│   └── fonts/
+│
+└── dictionaries/                 # Données statiques
+    ├── fr/
+    │   ├── words-5.json          # Mots de 5 lettres
+    │   ├── words-6.json
+    │   └── definitions.json
+    └── ...
 ```
 
 ---
 
-## 6. ROADMAP DE DÉVELOPPEMENT
+## 6. ACHIEVEMENTS & CLASSEMENTS
 
-### Phase 1: MVP Web (3 mois)
+### 6.1 Achievements GameCenter / Play Games
 
-**Mois 1 - Fondations**
-- [ ] Setup projet Next.js + Supabase
-- [ ] Système d'authentification
-- [ ] Design system (composants UI)
-- [ ] Premier jeu: MOTUS complet
+```
+┌─────────────────────────────────────────────────────────┐
+│                    ACHIEVEMENTS                         │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  MOTUS                                                 │
+│  ├── "Premier Mot" — Trouver son premier mot    (10pt) │
+│  ├── "Sans Faute" — Trouver en 1 essai          (50pt) │
+│  ├── "Semaine Parfaite" — 7 jours de streak     (25pt) │
+│  ├── "Centenaire" — 100 mots trouvés            (50pt) │
+│  └── "Maître des Mots" — 1000 mots trouvés     (100pt) │
+│                                                         │
+│  SUDOKU                                                │
+│  ├── "Logicien" — Finir une grille sans erreur  (10pt) │
+│  ├── "Speed Demon" — Finir en moins de 3 min    (25pt) │
+│  ├── "Expert" — Finir une grille Diabolique     (50pt) │
+│  ├── "Variétés" — Jouer toutes les variantes    (50pt) │
+│  └── "Grand Maître" — 500 grilles complétées   (100pt) │
+│                                                         │
+│  NUMBER MATCH                                          │
+│  ├── "Première Paire" — Éliminer sa 1ère paire  (10pt) │
+│  ├── "Combo x5" — 5 paires d'affilée            (25pt) │
+│  ├── "Zen Master" — 1h en mode zen              (50pt) │
+│  └── "Perfectionniste" — Vider une grille      (100pt) │
+│                                                         │
+│  GLOBAL                                                │
+│  ├── "Touche-à-Tout" — Jouer à tous les jeux    (25pt) │
+│  ├── "Régulier" — 30 jours de streak            (50pt) │
+│  ├── "Supporter" — Faire un achat               (25pt) │
+│  ├── "Mécène" — Faire une donation              (50pt) │
+│  └── "Légende" — Tous les achievements         (200pt) │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+```
 
-**Mois 2 - Expansion**
-- [ ] Deuxième jeu: SUDOKU (classique)
-- [ ] Troisième jeu: NUMBER MATCH
-- [ ] Dashboard utilisateur
+### 6.2 Classements (Leaderboards)
+
+| Classement | Type | Reset |
+|------------|------|-------|
+| Motus - Meilleur temps | Par jeu | Permanent |
+| Motus - Streak | Par jeu | Permanent |
+| Sudoku Facile - Temps | Par difficulté | Hebdo |
+| Sudoku Expert - Temps | Par difficulté | Hebdo |
+| Score Global Hebdo | Tous jeux | Hebdomadaire |
+| Score Global All-Time | Tous jeux | Permanent |
+
+---
+
+## 7. ROADMAP DE DÉVELOPPEMENT
+
+### Phase 1 : MVP (8 semaines)
+
+**Semaines 1-2 : Setup**
+- [ ] Initialisation projet Expo
+- [ ] Configuration TypeScript + NativeWind
+- [ ] Design system de base (boutons, inputs, cards)
+- [ ] Navigation (Expo Router)
+- [ ] Store Zustand + MMKV
+
+**Semaines 3-4 : Premier Jeu (MOTUS)**
+- [ ] Logique complète du jeu
+- [ ] UI du clavier et grille
+- [ ] Animations (lettres qui se révèlent)
+- [ ] Dictionnaire français intégré
+- [ ] Écran de victoire/défaite
+
+**Semaines 5-6 : Deuxième Jeu (SUDOKU)**
+- [ ] Générateur de grilles (algorithme local)
+- [ ] UI de la grille 9x9
+- [ ] Système de notes
+- [ ] Vérification des erreurs
+- [ ] 4 niveaux de difficulté
+
+**Semaines 7-8 : Infrastructure**
+- [ ] Daily Hub (écran d'accueil)
 - [ ] Système de streaks
+- [ ] Statistiques basiques
+- [ ] Intégration GameCenter (iOS)
+- [ ] Build et test sur devices
 
-**Mois 3 - Polish**
-- [ ] Défis quotidiens
-- [ ] Classements
-- [ ] PWA (installable)
-- [ ] Beta testing
+### Phase 2 : Enrichissement (8 semaines)
 
-### Phase 2: Lancement & Croissance (3 mois)
+**Semaines 9-10 : Jeux Additionnels**
+- [ ] NUMBER MATCH
+- [ ] ANAGRAMMES
+- [ ] 2048
 
-**Mois 4 - Lancement**
-- [ ] Landing page marketing
-- [ ] Intégration Stripe
-- [ ] Lancement public (Product Hunt, Hacker News)
-- [ ] Collecte de feedback
-
-**Mois 5 - Nouveaux Jeux**
-- [ ] SÉMANTIQUE (nécessite embeddings)
-- [ ] MOTS FLÉCHÉS (générateur)
-- [ ] Variantes Sudoku
-
-**Mois 6 - Social**
-- [ ] Système d'amis
-- [ ] Défis entre amis
+**Semaines 11-12 : Social**
+- [ ] Intégration Play Games (Android)
+- [ ] Classements fonctionnels
+- [ ] Achievements
 - [ ] Partage de scores
-- [ ] Leagues hebdomadaires
 
-### Phase 3: Mobile & Scale (6 mois)
+**Semaines 13-14 : Monétisation**
+- [ ] Boutique UI
+- [ ] Intégration StoreKit 2 (iOS)
+- [ ] Intégration Google Play Billing
+- [ ] Thèmes achetables
+- [ ] Système de donations
 
-**Mois 7-9 - Applications Natives**
-- [ ] iOS via Capacitor
-- [ ] Android via Capacitor
-- [ ] Notifications push
-- [ ] Widgets (iOS 17+)
+**Semaines 15-16 : Polish**
+- [ ] Thèmes visuels (dark, néon, nature)
+- [ ] Sons et haptics
+- [ ] Onboarding
+- [ ] Optimisations performances
 
-**Mois 10-12 - Expansion**
-- [ ] Internationalisation (EN, ES, DE)
-- [ ] Nouveaux jeux (Kakuro, Nonogram, etc.)
-- [ ] Mode clubs
-- [ ] Partenariats (médias, éducation)
+### Phase 3 : Lancement (4 semaines)
+
+**Semaines 17-18**
+- [ ] Beta TestFlight (iOS)
+- [ ] Beta interne Play Store
+- [ ] Corrections bugs
+- [ ] Landing page web
+
+**Semaines 19-20**
+- [ ] Soumission App Store
+- [ ] Soumission Play Store
+- [ ] Déploiement version web
+- [ ] Lancement public
+
+### Phase 4 : Post-Lancement (continu)
+
+- [ ] Nouveaux jeux (1 par mois)
+- [ ] Nouveaux thèmes
+- [ ] Variantes Sudoku (Killer, Sandwich)
+- [ ] Jeu sémantique (avec embeddings locaux)
+- [ ] Mots fléchés (générateur)
+- [ ] Localisation (EN, ES, DE)
 
 ---
 
-## 7. STRATÉGIE DE LANCEMENT
+## 8. STRATÉGIE DE LANCEMENT
 
-### 7.1 Acquisition Utilisateurs
+### 8.1 Acquisition Utilisateurs
 
 | Canal | Action | Objectif |
 |-------|--------|----------|
-| **Product Hunt** | Lancement featured | 5,000 signups |
-| **Reddit** | r/puzzles, r/france, r/wordle | Communauté early |
-| **Twitter/X** | Thread viral "pourquoi j'ai créé..." | Awareness |
-| **YouTube** | Démo vidéo + reviews | SEO long terme |
-| **SEO** | "sudoku gratuit sans pub" | Trafic organique |
-| **Bouche à oreille** | Partage de scores intégré | Viralité |
+| **App Store / Play Store** | ASO optimisé ("sudoku sans pub") | Trafic organique |
+| **Product Hunt** | Lancement featured | Buzz initial |
+| **Reddit** | r/puzzles, r/france, r/iosgaming | Communauté early |
+| **Twitter/X** | Thread "pourquoi j'ai créé..." | Viralité |
+| **TikTok** | Vidéos gameplay satisfaisant | Gen Z |
 
-### 7.2 Rétention
+### 8.2 Message Principal
 
-- **Notifications intelligentes**: "Votre défi quotidien vous attend" (opt-in)
-- **Streaks**: Motivation à revenir chaque jour
-- **Nouveauté**: Un nouveau jeu/variante par mois
-- **Communauté**: Clubs et compétitions
+> "Tous vos jeux cérébraux préférés. Gratuits. Sans pub. Pour toujours."
 
-### 7.3 Monétisation Progressive
+### 8.3 Différenciateurs à Mettre en Avant
 
-```
-Semaine 1-4: 100% gratuit (acquisition)
-     ↓
-Mois 2: Introduction du premium (soft paywall)
-     ↓
-Mois 3+: Optimisation conversion (A/B testing)
-```
-
----
-
-## 8. DIFFÉRENCIATION CLÉS
-
-### Ce qui nous rend uniques
-
-| Aspect | Concurrence | MINDFLOW |
-|--------|-------------|----------|
-| **Pubs** | Toutes les 30 sec | JAMAIS |
-| **Jeux** | 1 app = 1 jeu | 15+ jeux |
-| **Design** | Daté, cheap | Premium, moderne |
-| **Social** | Basique | Clubs, leagues, défis |
-| **Offline** | Limité | 100% fonctionnel |
-| **Prix** | ~5€/jeu/mois | 5€ TOUT inclus |
-| **Données** | Vendues | Privées |
-
-### Notre Manifeste
-
-> "Les jeux cérébraux doivent stimuler l'esprit, pas l'exaspérer.
-> Nous croyons qu'une expérience de qualité mérite un prix juste,
-> pas un bombardement publicitaire.
-> MINDFLOW: votre cerveau mérite mieux."
+1. **ZÉRO PUB** — Le message numéro 1
+2. **Tout gratuit** — Pas de paywall sur le gameplay
+3. **Tout-en-un** — Plus besoin de 10 apps
+4. **Premium** — Design soigné, pas cheap
+5. **Respectueux** — Pas de dark patterns
 
 ---
 
@@ -396,63 +607,36 @@ Mois 3+: Optimisation conversion (A/B testing)
 
 | Risque | Probabilité | Impact | Mitigation |
 |--------|-------------|--------|------------|
-| Faible conversion premium | Moyenne | Fort | A/B testing, ajuster offre gratuite |
-| Coût serveur élevé | Moyenne | Moyen | Architecture optimisée, cache agressif |
-| Copie par géants (Google, Apple) | Faible | Fort | Vitesse d'exécution, communauté fidèle |
-| Difficulté technique (sémantique) | Moyenne | Moyen | Utiliser APIs existantes (OpenAI) |
-| Saturation du marché | Faible | Moyen | Qualité > Quantité, niche premium |
+| Faible conversion achats | Moyenne | Moyen | Le projet ne dépend pas des revenus (coût 0€) |
+| Complexité jeu sémantique | Haute | Faible | Reporter à une phase ultérieure |
+| Rejet App Store | Faible | Fort | Suivre les guidelines strictement |
+| Copie par concurrents | Moyenne | Faible | Avance communautaire, qualité |
 
 ---
 
-## 10. PROCHAINES ÉTAPES IMMÉDIATES
+## 10. RÉCAPITULATIF
 
-### Pour démarrer maintenant:
+### Ce qui rend MINDFLOW unique
 
-1. **Valider le concept** (1 semaine)
-   - Sondage auprès de joueurs potentiels
-   - Analyse des reviews négatives des apps existantes
-   - Confirmer le pricing acceptable
+| Aspect | Apps Existantes | MINDFLOW |
+|--------|-----------------|----------|
+| **Publicité** | Omniprésente | Aucune, jamais |
+| **Gameplay** | Limité ou payant | 100% gratuit et complet |
+| **Abonnement** | Requis | Aucun |
+| **Jeux** | 1 app = 1 jeu | 15+ jeux |
+| **Classements** | Souvent absents | GameCenter / Play Games |
+| **Coût serveur** | Élevé | 0€ |
+| **Design** | Daté | Premium |
 
-2. **Prototype MOTUS** (2 semaines)
-   - Version jouable minimale
-   - Tester l'UX sur 10 utilisateurs
-   - Itérer sur le feedback
+### Notre Manifeste
 
-3. **Setup technique** (1 semaine)
-   - Repo GitHub
-   - CI/CD
-   - Environnement de dev
-
-4. **Développement MVP** (10 semaines)
-   - Suivre la roadmap Phase 1
-
----
-
-## ANNEXES
-
-### A. Inspirations Design
-
-- **Duolingo**: Gamification, streaks, progression
-- **Notion**: Minimalisme, élégance
-- **Linear**: Rapidité, fluidité
-- **Arc Browser**: Innovation UX
-
-### B. Ressources Techniques
-
-- Dictionnaire français: [lexique.org](http://lexique.org)
-- Embeddings sémantiques: OpenAI / Sentence Transformers
-- Générateur Sudoku: [sudoku-gen](https://github.com/robatron/sudoku.js)
-- Mots fléchés: Algorithme de contraintes (CSP)
-
-### C. Métriques Clés à Suivre
-
-- **DAU/MAU**: Ratio d'engagement (cible: >40%)
-- **D1/D7/D30**: Rétention (cible: 60%/30%/15%)
-- **Conversion**: Gratuit → Premium (cible: 8%)
-- **LTV**: Lifetime Value (cible: >50€)
-- **NPS**: Net Promoter Score (cible: >50)
+> "Les jeux cérébraux doivent stimuler l'esprit, pas l'exaspérer.
+> Nous refusons les pubs intrusives et les abonnements forcés.
+> MINDFLOW : gratuit, sans pub, pour toujours.
+> Soutenez-nous si vous le souhaitez, jouez librement dans tous les cas."
 
 ---
 
-*Document créé le 28/01/2026 - Version 1.0*
-*Projet: MINDFLOW - Révolutionner les jeux cérébraux*
+*Document mis à jour le 28/01/2026 - Version 2.0*
+*Projet : MINDFLOW - Jeux cérébraux sans friction*
+*Architecture : React Native + Expo | Coût maintenance : 0€/mois*

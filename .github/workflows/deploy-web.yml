@@ -1,19 +1,13 @@
 name: Deploy MindFlow to GitHub Pages
 
 on:
-  # Deploy on push to main branch
+  # Deploy on push to main branch (includes merged PRs)
   push:
     branches:
       - main
     paths:
       - 'mindflow/**'
       - '.github/workflows/deploy-web.yml'
-
-  # Deploy when PR is merged to main
-  pull_request:
-    types: [closed]
-    branches:
-      - main
 
   # Allow manual deployment
   workflow_dispatch:
@@ -29,12 +23,6 @@ concurrency:
 
 jobs:
   build:
-    # Only run if push to main OR PR was merged (not just closed)
-    if: |
-      github.event_name == 'push' ||
-      github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
-
     runs-on: ubuntu-latest
 
     steps:
@@ -67,11 +55,6 @@ jobs:
           path: ./mindflow/dist
 
   deploy:
-    if: |
-      github.event_name == 'push' ||
-      github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

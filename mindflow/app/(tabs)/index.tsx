@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, Pressable } from 'react-native';
+import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -43,7 +43,7 @@ function DailyChallengeCard({
         onPress={onPress}
         style={{ width: 140, marginRight: 12 }}
       >
-        <View className="items-center">
+        <View style={{ alignItems: 'center' }}>
           <View
             style={{
               backgroundColor: completed ? theme.colors.correct + '20' : theme.colors.surfaceLight,
@@ -59,26 +59,25 @@ function DailyChallengeCard({
             />
           </View>
           <Text
-            style={{ color: theme.colors.text }}
-            className="font-semibold text-base mb-1"
+            style={{ color: theme.colors.text, fontWeight: '600', fontSize: 16, marginBottom: 4 }}
           >
             {title}
           </Text>
           {completed ? (
-            <View className="items-center">
+            <View style={{ alignItems: 'center' }}>
               {score !== null && score !== undefined && (
-                <Text style={{ color: theme.colors.correct }} className="text-sm font-medium">
+                <Text style={{ color: theme.colors.correct, fontSize: 14, fontWeight: '500' }}>
                   Score: {score}
                 </Text>
               )}
               {time !== null && time !== undefined && (
-                <Text style={{ color: theme.colors.textSecondary }} className="text-xs">
+                <Text style={{ color: theme.colors.textSecondary, fontSize: 12 }}>
                   {formatTime(time)}
                 </Text>
               )}
             </View>
           ) : (
-            <Text style={{ color: theme.colors.accent }} className="text-sm">
+            <Text style={{ color: theme.colors.accent, fontSize: 14 }}>
               Jouer
             </Text>
           )}
@@ -114,27 +113,32 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
         {/* Header */}
         <AnimatedView
           entering={FadeInDown.delay(100).springify()}
-          className="px-5 pt-4 pb-6"
+          style={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 24 }}
         >
-          <Text style={{ color: theme.colors.textSecondary }} className="text-base mb-1">
+          <Text style={{ color: theme.colors.textSecondary, fontSize: 16, marginBottom: 4 }}>
             Bonjour !
           </Text>
-          <View className="flex-row items-center justify-between">
-            <Text style={{ color: theme.colors.text }} className="text-3xl font-bold">
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Text style={{ color: theme.colors.text, fontSize: 30, fontWeight: 'bold' }}>
               MindFlow
             </Text>
             <View
-              className="flex-row items-center px-4 py-2 rounded-full"
-              style={{ backgroundColor: theme.colors.surface }}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 16,
+                paddingVertical: 8,
+                borderRadius: 999,
+                backgroundColor: theme.colors.surface,
+              }}
             >
               <Ionicons name="flame" size={20} color={theme.colors.accent} />
               <Text
-                style={{ color: theme.colors.accent }}
-                className="text-lg font-bold ml-1"
+                style={{ color: theme.colors.accent, fontSize: 18, fontWeight: 'bold', marginLeft: 4 }}
               >
                 {globalStreak}
               </Text>
@@ -145,23 +149,29 @@ export default function HomeScreen() {
         {/* Streak Banner */}
         <AnimatedView
           entering={FadeInUp.delay(200).springify()}
-          className="mx-5 mb-6"
+          style={{ marginHorizontal: 20, marginBottom: 24 }}
         >
           <Card variant="elevated" padding="lg">
-            <View className="flex-row items-center justify-between">
-              <View className="flex-1">
-                <Text style={{ color: theme.colors.text }} className="text-xl font-bold mb-1">
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+              <View style={{ flex: 1 }}>
+                <Text style={{ color: theme.colors.text, fontSize: 20, fontWeight: 'bold', marginBottom: 4 }}>
                   {globalStreak > 0
                     ? `${globalStreak} jour${globalStreak > 1 ? 's' : ''} de série !`
                     : 'Commencez votre série !'}
                 </Text>
-                <Text style={{ color: theme.colors.textSecondary }} className="text-sm">
+                <Text style={{ color: theme.colors.textSecondary, fontSize: 14 }}>
                   {completedToday}/{dailyGames.length} défis du jour complétés
                 </Text>
               </View>
               <View
-                className="w-16 h-16 rounded-full items-center justify-center"
-                style={{ backgroundColor: theme.colors.primary + '20' }}
+                style={{
+                  width: 64,
+                  height: 64,
+                  borderRadius: 32,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: theme.colors.primary + '20',
+                }}
               >
                 <Ionicons name="trophy" size={32} color={theme.colors.primary} />
               </View>
@@ -169,12 +179,18 @@ export default function HomeScreen() {
 
             {/* Progress bar */}
             <View
-              className="h-2 rounded-full mt-4 overflow-hidden"
-              style={{ backgroundColor: theme.colors.surfaceLight }}
+              style={{
+                height: 8,
+                borderRadius: 4,
+                marginTop: 16,
+                overflow: 'hidden',
+                backgroundColor: theme.colors.surfaceLight,
+              }}
             >
               <View
-                className="h-full rounded-full"
                 style={{
+                  height: '100%',
+                  borderRadius: 4,
                   backgroundColor: theme.colors.primary,
                   width: `${(completedToday / dailyGames.length) * 100}%`,
                 }}
@@ -184,16 +200,16 @@ export default function HomeScreen() {
         </AnimatedView>
 
         {/* Daily Challenges */}
-        <View className="mb-6">
+        <View style={{ marginBottom: 24 }}>
           <AnimatedView
             entering={FadeInUp.delay(300).springify()}
-            className="flex-row items-center justify-between px-5 mb-4"
+            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20, marginBottom: 16 }}
           >
-            <Text style={{ color: theme.colors.text }} className="text-xl font-bold">
+            <Text style={{ color: theme.colors.text, fontSize: 20, fontWeight: 'bold' }}>
               Défis du jour
             </Text>
             <Pressable>
-              <Text style={{ color: theme.colors.primary }} className="text-sm font-medium">
+              <Text style={{ color: theme.colors.primary, fontSize: 14, fontWeight: '500' }}>
                 Voir tout
               </Text>
             </Pressable>
@@ -226,38 +242,38 @@ export default function HomeScreen() {
         {/* Quick Stats */}
         <AnimatedView
           entering={FadeInUp.delay(700).springify()}
-          className="px-5 mb-6"
+          style={{ paddingHorizontal: 20, marginBottom: 24 }}
         >
-          <Text style={{ color: theme.colors.text }} className="text-xl font-bold mb-4">
+          <Text style={{ color: theme.colors.text, fontSize: 20, fontWeight: 'bold', marginBottom: 16 }}>
             Statistiques rapides
           </Text>
-          <View className="flex-row gap-3">
+          <View style={{ flexDirection: 'row', gap: 12 }}>
             <Card variant="default" padding="md" style={{ flex: 1 }}>
               <Ionicons name="game-controller" size={24} color={theme.colors.primary} />
-              <Text style={{ color: theme.colors.text }} className="text-2xl font-bold mt-2">
+              <Text style={{ color: theme.colors.text, fontSize: 24, fontWeight: 'bold', marginTop: 8 }}>
                 {Object.values(stats).reduce((acc, s) => acc + s.gamesPlayed, 0)}
               </Text>
-              <Text style={{ color: theme.colors.textSecondary }} className="text-sm">
+              <Text style={{ color: theme.colors.textSecondary, fontSize: 14 }}>
                 Parties jouées
               </Text>
             </Card>
 
             <Card variant="default" padding="md" style={{ flex: 1 }}>
               <Ionicons name="checkmark-circle" size={24} color={theme.colors.correct} />
-              <Text style={{ color: theme.colors.text }} className="text-2xl font-bold mt-2">
+              <Text style={{ color: theme.colors.text, fontSize: 24, fontWeight: 'bold', marginTop: 8 }}>
                 {Object.values(stats).reduce((acc, s) => acc + s.gamesWon, 0)}
               </Text>
-              <Text style={{ color: theme.colors.textSecondary }} className="text-sm">
+              <Text style={{ color: theme.colors.textSecondary, fontSize: 14 }}>
                 Victoires
               </Text>
             </Card>
 
             <Card variant="default" padding="md" style={{ flex: 1 }}>
               <Ionicons name="flame" size={24} color={theme.colors.accent} />
-              <Text style={{ color: theme.colors.text }} className="text-2xl font-bold mt-2">
+              <Text style={{ color: theme.colors.text, fontSize: 24, fontWeight: 'bold', marginTop: 8 }}>
                 {Math.max(...Object.values(stats).map((s) => s.maxStreak), 0)}
               </Text>
-              <Text style={{ color: theme.colors.textSecondary }} className="text-sm">
+              <Text style={{ color: theme.colors.textSecondary, fontSize: 14 }}>
                 Meilleure série
               </Text>
             </Card>
@@ -267,7 +283,7 @@ export default function HomeScreen() {
         {/* CTA */}
         <AnimatedView
           entering={FadeInUp.delay(800).springify()}
-          className="px-5 mb-10"
+          style={{ paddingHorizontal: 20, marginBottom: 40 }}
         >
           <Button
             variant="primary"

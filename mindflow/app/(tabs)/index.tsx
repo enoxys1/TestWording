@@ -3,10 +3,10 @@ import { View, Text, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
+import { FadeInDown, FadeInUp } from 'react-native-reanimated';
 import { useThemeStore } from '../../src/stores/themeStore';
 import { useGameStore, GameType } from '../../src/stores/gameStore';
-import { Card, Button } from '../../src/components/ui';
+import { AnimatedView, Card, Button } from '../../src/components/ui';
 
 interface DailyChallengeCardProps {
   game: GameType;
@@ -37,7 +37,7 @@ function DailyChallengeCard({
   };
 
   return (
-    <Animated.View entering={FadeInUp.delay(delay).springify()}>
+    <AnimatedView entering={FadeInUp.delay(delay).springify()}>
       <Card
         variant="elevated"
         onPress={onPress}
@@ -84,7 +84,7 @@ function DailyChallengeCard({
           )}
         </View>
       </Card>
-    </Animated.View>
+    </AnimatedView>
   );
 }
 
@@ -116,7 +116,7 @@ export default function HomeScreen() {
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <Animated.View
+        <AnimatedView
           entering={FadeInDown.delay(100).springify()}
           className="px-5 pt-4 pb-6"
         >
@@ -140,10 +140,10 @@ export default function HomeScreen() {
               </Text>
             </View>
           </View>
-        </Animated.View>
+        </AnimatedView>
 
         {/* Streak Banner */}
-        <Animated.View
+        <AnimatedView
           entering={FadeInUp.delay(200).springify()}
           className="mx-5 mb-6"
         >
@@ -181,11 +181,11 @@ export default function HomeScreen() {
               />
             </View>
           </Card>
-        </Animated.View>
+        </AnimatedView>
 
         {/* Daily Challenges */}
         <View className="mb-6">
-          <Animated.View
+          <AnimatedView
             entering={FadeInUp.delay(300).springify()}
             className="flex-row items-center justify-between px-5 mb-4"
           >
@@ -197,7 +197,7 @@ export default function HomeScreen() {
                 Voir tout
               </Text>
             </Pressable>
-          </Animated.View>
+          </AnimatedView>
 
           <ScrollView
             horizontal
@@ -224,7 +224,7 @@ export default function HomeScreen() {
         </View>
 
         {/* Quick Stats */}
-        <Animated.View
+        <AnimatedView
           entering={FadeInUp.delay(700).springify()}
           className="px-5 mb-6"
         >
@@ -262,10 +262,10 @@ export default function HomeScreen() {
               </Text>
             </Card>
           </View>
-        </Animated.View>
+        </AnimatedView>
 
         {/* CTA */}
-        <Animated.View
+        <AnimatedView
           entering={FadeInUp.delay(800).springify()}
           className="px-5 mb-10"
         >
@@ -277,7 +277,7 @@ export default function HomeScreen() {
           >
             Jouer maintenant
           </Button>
-        </Animated.View>
+        </AnimatedView>
       </ScrollView>
     </SafeAreaView>
   );

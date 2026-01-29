@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,6 +7,9 @@ import { FadeInDown, FadeInUp } from 'react-native-reanimated';
 import { useThemeStore } from '../../src/stores/themeStore';
 import { useGameStore, GameType } from '../../src/stores/gameStore';
 import { AnimatedView, Card, Button } from '../../src/components/ui';
+
+// Container for max-width on desktop
+const MAX_WIDTH = 480;
 
 interface DailyChallengeCardProps {
   game: GameType;
@@ -113,187 +116,194 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
-      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-        {/* Header */}
-        <AnimatedView
-          entering={FadeInDown.delay(100).springify()}
-          style={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 24 }}
-        >
-          <Text style={{ color: theme.colors.textSecondary, fontSize: 16, marginBottom: 4 }}>
-            Bonjour !
-          </Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Text style={{ color: theme.colors.text, fontSize: 30, fontWeight: 'bold' }}>
-              MindFlow
-            </Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingHorizontal: 16,
-                paddingVertical: 8,
-                borderRadius: 999,
-                backgroundColor: theme.colors.surface,
-              }}
-            >
-              <Ionicons name="flame" size={20} color={theme.colors.accent} />
-              <Text
-                style={{ color: theme.colors.accent, fontSize: 18, fontWeight: 'bold', marginLeft: 4 }}
-              >
-                {globalStreak}
-              </Text>
-            </View>
-          </View>
-        </AnimatedView>
-
-        {/* Streak Banner */}
-        <AnimatedView
-          entering={FadeInUp.delay(200).springify()}
-          style={{ marginHorizontal: 20, marginBottom: 24 }}
-        >
-          <Card variant="elevated" padding="lg">
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: theme.colors.text, fontSize: 20, fontWeight: 'bold', marginBottom: 4 }}>
-                  {globalStreak > 0
-                    ? `${globalStreak} jour${globalStreak > 1 ? 's' : ''} de série !`
-                    : 'Commencez votre série !'}
-                </Text>
-                <Text style={{ color: theme.colors.textSecondary, fontSize: 14 }}>
-                  {completedToday}/{dailyGames.length} défis du jour complétés
-                </Text>
-              </View>
-              <View
-                style={{
-                  width: 64,
-                  height: 64,
-                  borderRadius: 32,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: theme.colors.primary + '20',
-                }}
-              >
-                <Ionicons name="trophy" size={32} color={theme.colors.primary} />
-              </View>
-            </View>
-
-            {/* Progress bar */}
-            <View
-              style={{
-                height: 8,
-                borderRadius: 4,
-                marginTop: 16,
-                overflow: 'hidden',
-                backgroundColor: theme.colors.surfaceLight,
-              }}
-            >
-              <View
-                style={{
-                  height: '100%',
-                  borderRadius: 4,
-                  backgroundColor: theme.colors.primary,
-                  width: `${(completedToday / dailyGames.length) * 100}%`,
-                }}
-              />
-            </View>
-          </Card>
-        </AnimatedView>
-
-        {/* Daily Challenges */}
-        <View style={{ marginBottom: 24 }}>
+      <ScrollView
+        style={{ flex: 1 }}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ alignItems: 'center' }}
+      >
+        {/* Container with max width for desktop */}
+        <View style={{ width: '100%', maxWidth: MAX_WIDTH }}>
+          {/* Header */}
           <AnimatedView
-            entering={FadeInUp.delay(300).springify()}
-            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20, marginBottom: 16 }}
+            entering={FadeInDown.delay(100).springify()}
+            style={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 24 }}
           >
-            <Text style={{ color: theme.colors.text, fontSize: 20, fontWeight: 'bold' }}>
-              Défis du jour
+            <Text style={{ color: theme.colors.textSecondary, fontSize: 16, marginBottom: 4 }}>
+              Bonjour !
             </Text>
-            <Pressable>
-              <Text style={{ color: theme.colors.primary, fontSize: 14, fontWeight: '500' }}>
-                Voir tout
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Text style={{ color: theme.colors.text, fontSize: 30, fontWeight: 'bold' }}>
+                MindFlow
               </Text>
-            </Pressable>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  paddingHorizontal: 16,
+                  paddingVertical: 8,
+                  borderRadius: 999,
+                  backgroundColor: theme.colors.surface,
+                }}
+              >
+                <Ionicons name="flame" size={20} color={theme.colors.accent} />
+                <Text
+                  style={{ color: theme.colors.accent, fontSize: 18, fontWeight: 'bold', marginLeft: 4 }}
+                >
+                  {globalStreak}
+                </Text>
+              </View>
+            </View>
           </AnimatedView>
 
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingHorizontal: 20 }}
+          {/* Streak Banner */}
+          <AnimatedView
+            entering={FadeInUp.delay(200).springify()}
+            style={{ marginHorizontal: 20, marginBottom: 24 }}
           >
-            {dailyGames.map((game, index) => {
-              const status = getDailyStatus(game.game);
-              return (
-                <DailyChallengeCard
-                  key={game.game}
-                  game={game.game}
-                  title={game.title}
-                  icon={game.icon}
-                  completed={status.completed}
-                  score={status.score}
-                  time={status.time}
-                  onPress={() => router.push(game.route as any)}
-                  delay={400 + index * 100}
+            <Card variant="elevated" padding="lg">
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ color: theme.colors.text, fontSize: 20, fontWeight: 'bold', marginBottom: 4 }}>
+                    {globalStreak > 0
+                      ? `${globalStreak} jour${globalStreak > 1 ? 's' : ''} de série !`
+                      : 'Commencez votre série !'}
+                  </Text>
+                  <Text style={{ color: theme.colors.textSecondary, fontSize: 14 }}>
+                    {completedToday}/{dailyGames.length} défis du jour complétés
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: 64,
+                    height: 64,
+                    borderRadius: 32,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: theme.colors.primary + '20',
+                  }}
+                >
+                  <Ionicons name="trophy" size={32} color={theme.colors.primary} />
+                </View>
+              </View>
+
+              {/* Progress bar */}
+              <View
+                style={{
+                  height: 8,
+                  borderRadius: 4,
+                  marginTop: 16,
+                  overflow: 'hidden',
+                  backgroundColor: theme.colors.surfaceLight,
+                }}
+              >
+                <View
+                  style={{
+                    height: '100%',
+                    borderRadius: 4,
+                    backgroundColor: theme.colors.primary,
+                    width: `${(completedToday / dailyGames.length) * 100}%`,
+                  }}
                 />
-              );
-            })}
-          </ScrollView>
-        </View>
-
-        {/* Quick Stats */}
-        <AnimatedView
-          entering={FadeInUp.delay(700).springify()}
-          style={{ paddingHorizontal: 20, marginBottom: 24 }}
-        >
-          <Text style={{ color: theme.colors.text, fontSize: 20, fontWeight: 'bold', marginBottom: 16 }}>
-            Statistiques rapides
-          </Text>
-          <View style={{ flexDirection: 'row', gap: 12 }}>
-            <Card variant="default" padding="md" style={{ flex: 1 }}>
-              <Ionicons name="game-controller" size={24} color={theme.colors.primary} />
-              <Text style={{ color: theme.colors.text, fontSize: 24, fontWeight: 'bold', marginTop: 8 }}>
-                {Object.values(stats).reduce((acc, s) => acc + s.gamesPlayed, 0)}
-              </Text>
-              <Text style={{ color: theme.colors.textSecondary, fontSize: 14 }}>
-                Parties jouées
-              </Text>
+              </View>
             </Card>
+          </AnimatedView>
 
-            <Card variant="default" padding="md" style={{ flex: 1 }}>
-              <Ionicons name="checkmark-circle" size={24} color={theme.colors.correct} />
-              <Text style={{ color: theme.colors.text, fontSize: 24, fontWeight: 'bold', marginTop: 8 }}>
-                {Object.values(stats).reduce((acc, s) => acc + s.gamesWon, 0)}
+          {/* Daily Challenges */}
+          <View style={{ marginBottom: 24 }}>
+            <AnimatedView
+              entering={FadeInUp.delay(300).springify()}
+              style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20, marginBottom: 16 }}
+            >
+              <Text style={{ color: theme.colors.text, fontSize: 20, fontWeight: 'bold' }}>
+                Défis du jour
               </Text>
-              <Text style={{ color: theme.colors.textSecondary, fontSize: 14 }}>
-                Victoires
-              </Text>
-            </Card>
+              <Pressable>
+                <Text style={{ color: theme.colors.primary, fontSize: 14, fontWeight: '500' }}>
+                  Voir tout
+                </Text>
+              </Pressable>
+            </AnimatedView>
 
-            <Card variant="default" padding="md" style={{ flex: 1 }}>
-              <Ionicons name="flame" size={24} color={theme.colors.accent} />
-              <Text style={{ color: theme.colors.text, fontSize: 24, fontWeight: 'bold', marginTop: 8 }}>
-                {Math.max(...Object.values(stats).map((s) => s.maxStreak), 0)}
-              </Text>
-              <Text style={{ color: theme.colors.textSecondary, fontSize: 14 }}>
-                Meilleure série
-              </Text>
-            </Card>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ paddingHorizontal: 20 }}
+            >
+              {dailyGames.map((game, index) => {
+                const status = getDailyStatus(game.game);
+                return (
+                  <DailyChallengeCard
+                    key={game.game}
+                    game={game.game}
+                    title={game.title}
+                    icon={game.icon}
+                    completed={status.completed}
+                    score={status.score}
+                    time={status.time}
+                    onPress={() => router.push(game.route as any)}
+                    delay={400 + index * 100}
+                  />
+                );
+              })}
+            </ScrollView>
           </View>
-        </AnimatedView>
 
-        {/* CTA */}
-        <AnimatedView
-          entering={FadeInUp.delay(800).springify()}
-          style={{ paddingHorizontal: 20, marginBottom: 40 }}
-        >
-          <Button
-            variant="primary"
-            size="lg"
-            onPress={() => router.push('/games' as any)}
-            icon={<Ionicons name="play" size={20} color="#fff" />}
+          {/* Quick Stats */}
+          <AnimatedView
+            entering={FadeInUp.delay(700).springify()}
+            style={{ paddingHorizontal: 20, marginBottom: 24 }}
           >
-            Jouer maintenant
-          </Button>
-        </AnimatedView>
+            <Text style={{ color: theme.colors.text, fontSize: 20, fontWeight: 'bold', marginBottom: 16 }}>
+              Statistiques rapides
+            </Text>
+            <View style={{ flexDirection: 'row', gap: 12 }}>
+              <Card variant="default" padding="md" style={{ flex: 1 }}>
+                <Ionicons name="game-controller" size={24} color={theme.colors.primary} />
+                <Text style={{ color: theme.colors.text, fontSize: 24, fontWeight: 'bold', marginTop: 8 }}>
+                  {Object.values(stats).reduce((acc, s) => acc + s.gamesPlayed, 0)}
+                </Text>
+                <Text style={{ color: theme.colors.textSecondary, fontSize: 14 }}>
+                  Parties jouées
+                </Text>
+              </Card>
+
+              <Card variant="default" padding="md" style={{ flex: 1 }}>
+                <Ionicons name="checkmark-circle" size={24} color={theme.colors.correct} />
+                <Text style={{ color: theme.colors.text, fontSize: 24, fontWeight: 'bold', marginTop: 8 }}>
+                  {Object.values(stats).reduce((acc, s) => acc + s.gamesWon, 0)}
+                </Text>
+                <Text style={{ color: theme.colors.textSecondary, fontSize: 14 }}>
+                  Victoires
+                </Text>
+              </Card>
+
+              <Card variant="default" padding="md" style={{ flex: 1 }}>
+                <Ionicons name="flame" size={24} color={theme.colors.accent} />
+                <Text style={{ color: theme.colors.text, fontSize: 24, fontWeight: 'bold', marginTop: 8 }}>
+                  {Math.max(...Object.values(stats).map((s) => s.maxStreak), 0)}
+                </Text>
+                <Text style={{ color: theme.colors.textSecondary, fontSize: 14 }}>
+                  Meilleure série
+                </Text>
+              </Card>
+            </View>
+          </AnimatedView>
+
+          {/* CTA */}
+          <AnimatedView
+            entering={FadeInUp.delay(800).springify()}
+            style={{ paddingHorizontal: 20, marginBottom: 40 }}
+          >
+            <Button
+              variant="primary"
+              size="lg"
+              onPress={() => router.push('/games' as any)}
+              icon={<Ionicons name="play" size={20} color="#fff" />}
+            >
+              Jouer maintenant
+            </Button>
+          </AnimatedView>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

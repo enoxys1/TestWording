@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import Animated, { FadeInUp, FadeInDown } from 'react-native-reanimated';
+import { FadeInUp, FadeInDown } from 'react-native-reanimated';
 import { useThemeStore } from '../../src/stores/themeStore';
 import { useGameStore, GameType } from '../../src/stores/gameStore';
-import { Card } from '../../src/components/ui';
+import { AnimatedView, Card } from '../../src/components/ui';
 
 interface StatCardProps {
   title: string;
@@ -65,7 +65,7 @@ function GameStatsRow({ game, title, icon, color, delay }: GameStatsRowProps) {
   };
 
   return (
-    <Animated.View entering={FadeInUp.delay(delay).springify()}>
+    <AnimatedView entering={FadeInUp.delay(delay).springify()}>
       <Card variant="default" padding="md" style={{ marginBottom: 12 }}>
         <View className="flex-row items-center mb-4">
           <View
@@ -128,7 +128,7 @@ function GameStatsRow({ game, title, icon, color, delay }: GameStatsRowProps) {
           </View>
         </View>
       </Card>
-    </Animated.View>
+    </AnimatedView>
   );
 }
 
@@ -153,7 +153,7 @@ export default function StatsScreen() {
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <Animated.View
+        <AnimatedView
           entering={FadeInDown.delay(100).springify()}
           className="px-5 pt-4 pb-2"
         >
@@ -163,10 +163,10 @@ export default function StatsScreen() {
           <Text style={{ color: theme.colors.textSecondary }} className="text-base">
             Suivez votre progression
           </Text>
-        </Animated.View>
+        </AnimatedView>
 
         {/* Global Stats */}
-        <Animated.View
+        <AnimatedView
           entering={FadeInUp.delay(200).springify()}
           className="px-5 py-4"
         >
@@ -199,17 +199,16 @@ export default function StatsScreen() {
               color="#F59E0B"
             />
           </View>
-        </Animated.View>
+        </AnimatedView>
 
         {/* Per-Game Stats */}
         <View className="px-5 py-4">
-          <Animated.Text
-            entering={FadeInUp.delay(400).springify()}
+          <Text
             style={{ color: theme.colors.text }}
             className="text-xl font-bold mb-4"
           >
             Par jeu
-          </Animated.Text>
+          </Text>
 
           {gamesList.map((game, index) => (
             <GameStatsRow
@@ -221,7 +220,7 @@ export default function StatsScreen() {
         </View>
 
         {/* Achievement Preview */}
-        <Animated.View
+        <AnimatedView
           entering={FadeInUp.delay(1000).springify()}
           className="px-5 pb-10"
         >
@@ -239,7 +238,7 @@ export default function StatsScreen() {
               <Ionicons name="chevron-forward" size={24} color={theme.colors.textSecondary} />
             </View>
           </Card>
-        </Animated.View>
+        </AnimatedView>
       </ScrollView>
     </SafeAreaView>
   );

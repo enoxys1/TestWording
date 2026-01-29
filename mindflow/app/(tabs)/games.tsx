@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, ScrollView, Pressable, Image } from 'react-native';
+import { View, Text, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import Animated, { FadeInUp, FadeInDown } from 'react-native-reanimated';
+import { FadeInUp, FadeInDown } from 'react-native-reanimated';
 import { useThemeStore } from '../../src/stores/themeStore';
 import { useGameStore, GameType } from '../../src/stores/gameStore';
-import { Card } from '../../src/components/ui';
+import { AnimatedView, Card } from '../../src/components/ui';
 
 interface GameCardProps {
   game: GameType;
@@ -24,7 +24,7 @@ function GameCard({ title, description, icon, color, route, delay, game }: GameC
   const stats = useGameStore((s) => s.stats[game]);
 
   return (
-    <Animated.View entering={FadeInUp.delay(delay).springify()}>
+    <AnimatedView entering={FadeInUp.delay(delay).springify()}>
       <Card
         variant="elevated"
         onPress={() => router.push(route as any)}
@@ -58,7 +58,7 @@ function GameCard({ title, description, icon, color, route, delay, game }: GameC
           <Ionicons name="chevron-forward" size={24} color={theme.colors.textSecondary} />
         </View>
       </Card>
-    </Animated.View>
+    </AnimatedView>
   );
 }
 
@@ -133,7 +133,7 @@ export default function GamesScreen() {
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <Animated.View
+        <AnimatedView
           entering={FadeInDown.delay(100).springify()}
           className="px-5 pt-4 pb-2"
         >
@@ -143,10 +143,10 @@ export default function GamesScreen() {
           <Text style={{ color: theme.colors.textSecondary }} className="text-base">
             Choisissez un jeu et entraînez votre cerveau
           </Text>
-        </Animated.View>
+        </AnimatedView>
 
         {/* Category Filters */}
-        <Animated.View
+        <AnimatedView
           entering={FadeInUp.delay(150).springify()}
           className="flex-row px-5 py-4"
         >
@@ -174,7 +174,7 @@ export default function GamesScreen() {
               </Text>
             </Pressable>
           ))}
-        </Animated.View>
+        </AnimatedView>
 
         {/* Games List */}
         <View className="px-5 pb-6">
@@ -184,7 +184,7 @@ export default function GamesScreen() {
         </View>
 
         {/* Coming Soon */}
-        <Animated.View
+        <AnimatedView
           entering={FadeInUp.delay(700).springify()}
           className="px-5 pb-10"
         >
@@ -202,7 +202,7 @@ export default function GamesScreen() {
               </Text>
             </View>
           </Card>
-        </Animated.View>
+        </AnimatedView>
       </ScrollView>
     </SafeAreaView>
   );
